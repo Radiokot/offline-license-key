@@ -111,4 +111,20 @@ class ProofOfConcept {
                         .joinToString()
         )
     }
+
+    @Test
+    fun encodeKey() {
+        val keypair = KeyPairGenerator.getInstance("RSA")
+            .apply { initialize(2048) }
+            .genKeyPair()
+        val encoder = Base64.getMimeEncoder(64, "\n".toByteArray(Charsets.US_ASCII))
+
+        println("-----BEGIN RSA PRIVATE KEY-----")
+        println(encoder.encodeToString(keypair.private.encoded))
+        println("-----END RSA PRIVATE KEY-----")
+
+        println("-----BEGIN RSA PUBLIC KEY-----")
+        println(encoder.encodeToString(keypair.public.encoded))
+        println("-----END RSA PUBLIC KEY-----")
+    }
 }
