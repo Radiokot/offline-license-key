@@ -2,9 +2,9 @@ package ua.com.radiokot.license
 
 import com.auth0.jwt.algorithms.Algorithm
 import com.auth0.jwt.interfaces.DecodedJWT
+import ua.com.radiokot.license.extension.indicesSequence
 import java.security.interfaces.RSAKey
 import java.util.*
-import kotlin.streams.toList
 
 class JwtLicenseKey(
     issuer: String,
@@ -28,12 +28,13 @@ class JwtLicenseKey(
         hardware = decodedJWT.getClaim(CLAIM_HARDWARE).asString(),
         features = decodedJWT.getClaim(CLAIM_FEATURES)
             .asArray(Number::class.java)
-            .map(Number::toLong)
-            .toLongArray()
+            .let { arrayOfNumbers ->
+                LongArray(arrayOfNumbers.size) { i ->
+                    arrayOfNumbers[i].toLong()
+                }
+            }
             .let(BitSet::valueOf)
-            // TODO: Get rid of Java 8 APIs for Android < 26
-            .stream()
-            .toList()
+            .indicesSequence()
             .toSet(),
         jwt = decodedJWT.token,
     )
