@@ -1,6 +1,8 @@
 package ua.com.radiokot.license
 
+import com.auth0.jwt.algorithms.Algorithm
 import com.auth0.jwt.interfaces.DecodedJWT
+import java.security.interfaces.RSAKey
 import java.util.*
 import kotlin.streams.toList
 
@@ -40,5 +42,8 @@ class JwtLicenseKey(
         const val FORMAT = "JWT"
         const val CLAIM_HARDWARE = "hw"
         const val CLAIM_FEATURES = "f"
+
+        fun getAlgorithm(key: RSAKey): Algorithm =
+            Algorithm.RSA256(key)
     }
 }
