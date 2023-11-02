@@ -24,7 +24,7 @@ class JwtLicenseKey(
 
     constructor(decodedJWT: DecodedJWT) : this(
         issuer = decodedJWT.issuer,
-        subject = decodedJWT.issuer,
+        subject = decodedJWT.subject,
         hardware = decodedJWT.getClaim(CLAIM_HARDWARE).asString(),
         features = decodedJWT.getClaim(CLAIM_FEATURES)
             .asArray(Number::class.java)
