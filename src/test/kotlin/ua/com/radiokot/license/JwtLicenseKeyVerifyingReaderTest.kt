@@ -13,7 +13,7 @@ import kotlin.test.assertEquals
 internal class JwtLicenseKeyVerifyingReaderTest {
 
     @Test
-    fun read() {
+    fun readSuccessfully() {
         val encodedKey = """
             eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyYWRpb2tvdC5jb20udWEiLCJzdWIiOiJvbGVnQHJhZGlva290LmNvbS51YSIsImh3IjoiMTIzMzIxIiwiZiI6WzUyNSwxXX0.G5Tof9C7tffcjpRM19E0MW8LNDJIaP65uWwDLD-vlNL84nDqGuCzGApwCKSRrtNmFA-8SL1pYheRNfga_oMXOX5wk5_mk8ecLDUvPsyapjy_QgJiSpWw2ONEM_4ghNa6tKlYQxa4FwMGhOxrPSC6ak0CIYubAvUJt3a83Y7JWIFQcsVQt-y1EN6O-a3DsV-SSz6T2lMkhXbWziZBeL-lg72E9krOyh66X7vQc2XXFqTNeLRAjSXYRymTxYlX-RiEpQdJybJqPCPvHrgA48l2P_MoV2t4vnPTp1QpB2gKk6ODWmAIw4fJlIu8CxIXPvSH4F5PfZ3tlfOGgINtw6hQ-g
         """.trimIndent()
@@ -55,7 +55,7 @@ internal class JwtLicenseKeyVerifyingReaderTest {
     }
 
     @Test
-    fun readHardwareMismatch() {
+    fun failToRead_IfHardwareIsDifferent() {
         val encodedKey = """
             eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyYWRpb2tvdC5jb20udWEiLCJzdWIiOiJvbGVnQHJhZGlva290LmNvbS51YSIsImh3IjoiMTIzMzIxIiwiZiI6WzUyNSwxXX0.G5Tof9C7tffcjpRM19E0MW8LNDJIaP65uWwDLD-vlNL84nDqGuCzGApwCKSRrtNmFA-8SL1pYheRNfga_oMXOX5wk5_mk8ecLDUvPsyapjy_QgJiSpWw2ONEM_4ghNa6tKlYQxa4FwMGhOxrPSC6ak0CIYubAvUJt3a83Y7JWIFQcsVQt-y1EN6O-a3DsV-SSz6T2lMkhXbWziZBeL-lg72E9krOyh66X7vQc2XXFqTNeLRAjSXYRymTxYlX-RiEpQdJybJqPCPvHrgA48l2P_MoV2t4vnPTp1QpB2gKk6ODWmAIw4fJlIu8CxIXPvSH4F5PfZ3tlfOGgINtw6hQ-g
         """.trimIndent()
@@ -87,7 +87,7 @@ internal class JwtLicenseKeyVerifyingReaderTest {
     }
 
     @Test
-    fun readIssuerNameMismatch() {
+    fun failToRead_IfIssuerNameIsDifferent() {
         val encodedKey = """
             eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyYWRpb2tvdC5jb20udWEiLCJzdWIiOiJvbGVnQHJhZGlva290LmNvbS51YSIsImh3IjoiMTIzMzIxIiwiZiI6WzUyNSwxXX0.G5Tof9C7tffcjpRM19E0MW8LNDJIaP65uWwDLD-vlNL84nDqGuCzGApwCKSRrtNmFA-8SL1pYheRNfga_oMXOX5wk5_mk8ecLDUvPsyapjy_QgJiSpWw2ONEM_4ghNa6tKlYQxa4FwMGhOxrPSC6ak0CIYubAvUJt3a83Y7JWIFQcsVQt-y1EN6O-a3DsV-SSz6T2lMkhXbWziZBeL-lg72E9krOyh66X7vQc2XXFqTNeLRAjSXYRymTxYlX-RiEpQdJybJqPCPvHrgA48l2P_MoV2t4vnPTp1QpB2gKk6ODWmAIw4fJlIu8CxIXPvSH4F5PfZ3tlfOGgINtw6hQ-g
         """.trimIndent()
@@ -117,7 +117,7 @@ internal class JwtLicenseKeyVerifyingReaderTest {
     }
 
     @Test
-    fun readIssuerKeyMismatch() {
+    fun failToRead_IfIssuerKeyIsDifferent() {
         val encodedKey = """
             eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyYWRpb2tvdC5jb20udWEiLCJzdWIiOiJvbGVnQHJhZGlva290LmNvbS51YSIsImh3IjoiMTIzMzIxIiwiZiI6WzUyNSwxXX0.G5Tof9C7tffcjpRM19E0MW8LNDJIaP65uWwDLD-vlNL84nDqGuCzGApwCKSRrtNmFA-8SL1pYheRNfga_oMXOX5wk5_mk8ecLDUvPsyapjy_QgJiSpWw2ONEM_4ghNa6tKlYQxa4FwMGhOxrPSC6ak0CIYubAvUJt3a83Y7JWIFQcsVQt-y1EN6O-a3DsV-SSz6T2lMkhXbWziZBeL-lg72E9krOyh66X7vQc2XXFqTNeLRAjSXYRymTxYlX-RiEpQdJybJqPCPvHrgA48l2P_MoV2t4vnPTp1QpB2gKk6ODWmAIw4fJlIu8CxIXPvSH4F5PfZ3tlfOGgINtw6hQ-g
         """.trimIndent()

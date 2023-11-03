@@ -6,7 +6,7 @@ import kotlin.test.assertEquals
 
 internal class BitSetUtilsTest {
     @Test
-    fun indices() {
+    fun getIndicesSuccessfully() {
         val vectors = listOf(
             listOf(0, 2, 5, 64),
             listOf(),
@@ -24,7 +24,7 @@ internal class BitSetUtilsTest {
     }
 
     @Test
-    fun indicesSequence() {
+    fun getIndicesSequenceSuccessfully() {
         val vectors = listOf(
             listOf(0, 2, 5, 64),
             listOf(),

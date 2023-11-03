@@ -10,7 +10,7 @@ import kotlin.test.assertTrue
 
 internal class JwtLicenseKeyFactoryTest {
     @Test
-    fun issue() {
+    fun issueSuccessfully() {
         val issuerName = "radiokot.com.ua"
         val issuerKey = KeyFactory.getInstance("RSA")
             .generatePrivate(
@@ -95,7 +95,7 @@ internal class JwtLicenseKeyFactoryTest {
     }
 
     @Test
-    fun issueFromSource() {
+    fun issueSuccessfully_IfUsingSourceKey() {
         val issuerKey = KeyFactory.getInstance("RSA")
             .generatePrivate(
                 PKCS8EncodedKeySpec(
