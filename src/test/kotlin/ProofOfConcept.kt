@@ -1,8 +1,5 @@
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
-import io.jsonwebtoken.Claims
-import io.jsonwebtoken.Jws
-import io.jsonwebtoken.Jwts
 import org.junit.jupiter.api.Test
 import java.security.KeyPairGenerator
 import java.security.interfaces.RSAPrivateKey
@@ -54,55 +51,6 @@ class ProofOfConcept {
             "Decoded license key features: " +
                     decodedLicenseKey.getClaim("f")
                         .asArray(Number::class.java)
-                        .map(Number::toLong)
-                        .toLongArray()
-                        .let(BitSet::valueOf)
-                        .stream()
-                        .toList()
-                        .joinToString()
-        )
-    }
-
-    @Test
-    fun pocJjwt() {
-        val issuerName = "radiokot.com.ua"
-        val issuerKeys = KeyPairGenerator.getInstance("RSA")
-            .apply { initialize(2048) }
-            .genKeyPair()
-
-        val licenseSubject = "oleg@radiokot.com.ua"
-        val licenseHardware = "123321"
-        val licenseFeatures = arrayOf(0, 2, 3, 9, 64)
-
-        val licenseKey: String = Jwts.builder()
-            .issuer(issuerName)
-            .subject(licenseSubject)
-            .claim("hw", licenseHardware)
-            .claim(
-                "f",
-                BitSet().apply {
-                    licenseFeatures.forEach { featureIndex ->
-                        set(featureIndex)
-                    }
-                }.toLongArray().toTypedArray()
-            )
-            .signWith(issuerKeys.private)
-            .compact()
-
-        println("Issued license key: $licenseKey")
-        println("Issued license key (short): ${licenseKey.substringAfter('.')}")
-
-        val decodedLicenseKey: Jws<Claims> = Jwts.parser()
-            .verifyWith(issuerKeys.public)
-            .requireIssuer(issuerName)
-            .require("hw", licenseHardware)
-            .build()
-            .parseSignedClaims(licenseKey)
-
-        println("Decoded license key subject: " + decodedLicenseKey.payload.subject)
-        println(
-            "Decoded license key features: " +
-                    (decodedLicenseKey.payload["f"] as ArrayList<Number>)
                         .map(Number::toLong)
                         .toLongArray()
                         .let(BitSet::valueOf)
