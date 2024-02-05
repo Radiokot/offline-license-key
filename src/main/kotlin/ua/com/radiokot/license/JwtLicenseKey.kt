@@ -11,6 +11,7 @@ class JwtLicenseKey(
     subject: String,
     hardware: String,
     features: Set<Int>,
+    expiresAt: Date?,
     jwt: String,
 ) :
     OfflineLicenseKey by EncodedOfflineLicenseKey(
@@ -18,6 +19,7 @@ class JwtLicenseKey(
         subject = subject,
         hardware = hardware,
         features = features,
+        expiresAt = expiresAt,
         format = FORMAT,
         encoded = jwt
     ) {
@@ -26,6 +28,7 @@ class JwtLicenseKey(
         issuer = decodedJWT.issuer,
         subject = decodedJWT.subject,
         hardware = decodedJWT.getClaim(CLAIM_HARDWARE).asString(),
+        expiresAt = decodedJWT.expiresAt,
         features = decodedJWT.getClaim(CLAIM_FEATURES)
             .asArray(Number::class.java)
             .let { arrayOfNumbers ->

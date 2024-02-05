@@ -8,6 +8,7 @@ import java.util.*
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
+
 internal class JwtLicenseKeyFactoryTest {
     @Test
     fun issueSuccessfully() {
@@ -51,6 +52,7 @@ internal class JwtLicenseKeyFactoryTest {
         val licenseSubject = "oleg@radiokot.com.ua"
         val licenseHardware = "123321"
         val licenseFeatures = setOf(0, 2, 3, 9, 64)
+        val expirationDate = Date(1707151200000)
 
         val issuedKey =
             JwtLicenseKeyFactory(
@@ -60,7 +62,8 @@ internal class JwtLicenseKeyFactoryTest {
                 .issue(
                     subject = licenseSubject,
                     hardware = licenseHardware,
-                    features = licenseFeatures
+                    features = licenseFeatures,
+                    expiresAt = expirationDate,
                 )
 
         assertEquals(
@@ -87,8 +90,12 @@ internal class JwtLicenseKeyFactoryTest {
             assertTrue(issuedKey.hasFeature(feature))
         }
         assertEquals(
+            expirationDate,
+            issuedKey.expiresAt
+        )
+        assertEquals(
             """
-                eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyYWRpb2tvdC5jb20udWEiLCJzdWIiOiJvbGVnQHJhZGlva290LmNvbS51YSIsImh3IjoiMTIzMzIxIiwiZiI6WzUyNSwxXX0.Vqd1qwdkLJQ7bf5PI5Yo2ybZZKWYLn2-qSb3AmiyYRLErrjXp8ZK-nT-5F9jSkwTDy99BoxwBdtBVE6tLIU79SS6-9NVaSwECIenIc8TKBdLt8HTV0d1H6MkCt-mqp5GW2alMamgPe6J7D20Ki6DVnM_7tP0DVCEUy0pyj578l3vzh-cRaIX3GSKxEW8FM-S8Yi80UcmLPri6ay_exN9SmwB8WmIhbtTz1UNi-3BoyzLnZjyyd5VLHDTbJoAsDeyQ-_9NTHVVh0aRC8y5ZCrz9xFsODK-a2gJQ1blYE9u-9ZQENB1Txv8yG6o2NrLrpPhWoFPPlUyJRv6I3lRBWRKg
+                eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyYWRpb2tvdC5jb20udWEiLCJzdWIiOiJvbGVnQHJhZGlva290LmNvbS51YSIsImh3IjoiMTIzMzIxIiwiZiI6WzUyNSwxXSwiZXhwIjoxNzA3MTUxMjAwfQ.E4BKbWpnJAgNTTlNB-LJWpNyjSvFJAZIL5zGZiiGWd6_34OAd1ZEvxbYBWlzTNzp1wdr2lWb0dsaKYAHQ8CzKyBzIRh7quGGbwm86s_09gxpE1w29U6pQOcErd-XxDbLu3gpl3ULeY5tDYJyj2O8sCfzEpR-KGF0_Ntlu-YWgwV1ZwZLu6XD1OTVEgxg4jZhmglN-c3WYqGrWy4tLbfxJaDFRiKym2YiFIPiBm9HLWG8poiawcDe6QPawXXO_rSZbHbwLVWf0dqNrc-x_wBTyWINTFlfEwuVQYCpRbH20RxC0pAp1fjCya00yaj4WIr5BOjxitX6PEjU9DG9b0Tv8A
             """.trimIndent(),
             issuedKey.encode()
         )
@@ -152,12 +159,14 @@ internal class JwtLicenseKeyFactoryTest {
         val editedSubject = "eSubject"
         val editedHardware = "eHardware"
         val editedFeatures = setOf(1, 2, 3, 9, 64)
+        val editedExpirationDate = Date(1707151200000)
 
         val editedCopy = factory.issue(
             source = issuedKey,
             subject = editedSubject,
             hardware = editedHardware,
             features = editedFeatures,
+            expiresAt = editedExpirationDate,
         )
 
         assertEquals(
@@ -171,6 +180,10 @@ internal class JwtLicenseKeyFactoryTest {
         assertEquals(
             editedFeatures,
             editedCopy.features
+        )
+        assertEquals(
+            editedExpirationDate,
+            editedCopy.expiresAt
         )
     }
 }

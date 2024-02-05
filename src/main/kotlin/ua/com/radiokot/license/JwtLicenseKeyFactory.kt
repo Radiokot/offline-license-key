@@ -15,6 +15,7 @@ class JwtLicenseKeyFactory(
         subject: String,
         hardware: String,
         features: Set<Int>,
+        expiresAt: Date?,
     ): OfflineLicenseKey {
         val featuresBitSet = BitSet().apply {
             features.forEach { featureIndex ->
@@ -32,6 +33,11 @@ class JwtLicenseKeyFactory(
                 JwtLicenseKey.CLAIM_FEATURES,
                 featuresBitSet.toLongArray().toTypedArray()
             )
+            .apply {
+                if (expiresAt != null) {
+                    withExpiresAt(expiresAt)
+                }
+            }
             .sign(issuerAlgorithm)
 
         return JwtLicenseKey(
@@ -39,6 +45,7 @@ class JwtLicenseKeyFactory(
             subject = subject,
             hardware = hardware,
             features = features.toSet(),
+            expiresAt = expiresAt,
             jwt = jwt,
         )
     }
