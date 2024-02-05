@@ -10,6 +10,9 @@ interface OfflineLicenseKey {
     val expiresAt: Date?
     val format: String
 
+    val isPerpetual: Boolean
+        get() = expiresAt == null
+
     fun hasFeature(index: Int): Boolean =
         index in features
 
