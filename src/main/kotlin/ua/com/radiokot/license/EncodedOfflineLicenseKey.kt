@@ -1,6 +1,6 @@
 package ua.com.radiokot.license
 
-class OfflineLicenseKeyImpl(
+class EncodedOfflineLicenseKey(
     override val issuer: String,
     override val subject: String,
     override val hardware: String,

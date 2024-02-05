@@ -13,7 +13,7 @@ class JwtLicenseKey(
     features: Set<Int>,
     jwt: String,
 ) :
-    OfflineLicenseKey by OfflineLicenseKeyImpl(
+    OfflineLicenseKey by EncodedOfflineLicenseKey(
         issuer = issuer,
         subject = subject,
         hardware = hardware,
