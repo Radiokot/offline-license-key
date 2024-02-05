@@ -35,7 +35,7 @@ internal class JwtLicenseKeyVerifyingReaderTest {
                 )
             ) as RSAPublicKey
 
-        val readKey = JwtLicenseKeyVerifyingReader(
+        val readKey = OfflineLicenseKeys.jwt.verifyingReader(
             issuerPublicKey = issuerPublicKey,
             issuer = "radiokot.com.ua",
             hardware = "123321",
@@ -82,7 +82,7 @@ internal class JwtLicenseKeyVerifyingReaderTest {
                 )
             ) as RSAPublicKey
 
-        val readKey = JwtLicenseKeyVerifyingReader(
+        val readKey = OfflineLicenseKeys.jwt.verifyingReader(
             issuerPublicKey = issuerPublicKey,
             issuer = "radiokot.com.ua",
             hardware = "123321",
@@ -129,7 +129,7 @@ internal class JwtLicenseKeyVerifyingReaderTest {
             ) as RSAPublicKey
 
         assertThrows<TokenExpiredException> {
-            JwtLicenseKeyVerifyingReader(
+            OfflineLicenseKeys.jwt.verifyingReader(
                 issuerPublicKey = issuerPublicKey,
             ).read(encodedKey)
         }
@@ -159,7 +159,7 @@ internal class JwtLicenseKeyVerifyingReaderTest {
 
         // TODO introduce special exceptions for verifiers.
         assertThrows<IncorrectClaimException> {
-            JwtLicenseKeyVerifyingReader(
+            OfflineLicenseKeys.jwt.verifyingReader(
                 issuerPublicKey = issuerPublicKey,
                 issuer = "radiokot.com.ua",
                 hardware = "some other device",
@@ -190,7 +190,7 @@ internal class JwtLicenseKeyVerifyingReaderTest {
             ) as RSAPublicKey
 
         assertThrows<IncorrectClaimException> {
-            JwtLicenseKeyVerifyingReader(
+            OfflineLicenseKeys.jwt.verifyingReader(
                 issuerPublicKey = issuerPublicKey,
                 issuer = "some other issuer",
             ).read(encodedKey)
@@ -220,7 +220,7 @@ internal class JwtLicenseKeyVerifyingReaderTest {
             ) as RSAPublicKey
 
         assertThrows<SignatureVerificationException> {
-            JwtLicenseKeyVerifyingReader(
+            OfflineLicenseKeys.jwt.verifyingReader(
                 issuerPublicKey = issuerPublicKey,
                 issuer = "radiokot.com.ua",
             ).read(encodedKey)
