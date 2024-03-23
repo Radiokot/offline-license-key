@@ -22,7 +22,7 @@ interface OfflineLicenseKey {
     val hardware: String
 
     /**
-     * Indices of the features this key enables.
+     * Non-negative indices of the features this key enables.
      *
      * @see hasFeature
      */
@@ -52,6 +52,8 @@ interface OfflineLicenseKey {
 
     /**
      * @return true if the key enables a feature with the given [index].
+     *
+     * @param index non-negative index of the feature.
      *
      * @see features
      */

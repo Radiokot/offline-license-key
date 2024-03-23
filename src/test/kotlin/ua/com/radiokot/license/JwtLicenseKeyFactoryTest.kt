@@ -198,7 +198,7 @@ internal class JwtLicenseKeyFactoryTest {
     }
 
     @Test
-    fun issueSuccessfully_IfUsingSourceKey() {
+    fun copySuccessfully() {
         val issuerKey = KeyFactory.getInstance("RSA")
             .generatePrivate(
                 PKCS8EncodedKeySpec(
@@ -246,7 +246,7 @@ internal class JwtLicenseKeyFactoryTest {
             features = setOf(0, 2, 3, 9, 64),
         )
 
-        val completeCopy = factory.issue(
+        val completeCopy = factory.copy(
             source = issuedKey,
         )
 
@@ -257,7 +257,7 @@ internal class JwtLicenseKeyFactoryTest {
         val editedFeatures = setOf(1, 2, 3, 9, 64)
         val editedExpirationDate = Date(1707151200000)
 
-        val editedCopy = factory.issue(
+        val editedCopy = factory.copy(
             source = issuedKey,
             subject = editedSubject,
             hardware = editedHardware,
