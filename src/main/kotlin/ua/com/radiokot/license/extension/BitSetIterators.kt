@@ -1,4 +1,4 @@
-@file:JvmName("BitSetUtils")
+@file:JvmName("BitSetIterators")
 
 package ua.com.radiokot.license.extension
 
