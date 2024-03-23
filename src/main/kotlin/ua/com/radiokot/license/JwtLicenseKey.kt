@@ -6,6 +6,12 @@ import ua.com.radiokot.license.extension.indicesSequence
 import java.security.interfaces.RSAKey
 import java.util.*
 
+/**
+ * An [OfflineLicenseKey] in JWT (JSON Web Token) format.
+ * Signing algorithm is RS256 (SHA256 with RSA).
+ *
+ * @see OfflineLicenseKeys.jwt
+ */
 class JwtLicenseKey(
     override val issuer: String,
     override val subject: String,
@@ -13,7 +19,7 @@ class JwtLicenseKey(
     override val features: Set<Int>,
     override val expiresAt: Date?,
     private val jwt: String,
-) : OfflineLicenseKey{
+) : OfflineLicenseKey {
     override val format: String = FORMAT
 
     constructor(decodedJWT: DecodedJWT) : this(

@@ -4,6 +4,11 @@ import com.auth0.jwt.JWT
 import java.security.interfaces.RSAPrivateKey
 import java.util.*
 
+/**
+ * A factory producing the JWT keys from the given issuer.
+ *
+ * @see JwtLicenseKey
+ */
 class JwtLicenseKeyFactory(
     private val issuer: String,
     issuerPrivateKey: RSAPrivateKey,

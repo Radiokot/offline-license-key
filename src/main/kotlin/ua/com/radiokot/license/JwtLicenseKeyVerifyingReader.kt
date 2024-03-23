@@ -1,9 +1,15 @@
 package ua.com.radiokot.license
 
 import com.auth0.jwt.JWT
+import com.auth0.jwt.exceptions.JWTVerificationException
 import com.auth0.jwt.interfaces.JWTVerifier
 import java.security.interfaces.RSAPublicKey
 
+/**
+ * A reader of JWT-encoded keys that verifies validity.
+ *
+ * @see JwtLicenseKey
+ */
 class JwtLicenseKeyVerifyingReader(
     issuerPublicKey: RSAPublicKey,
     private val issuer: String? = null,
@@ -16,6 +22,9 @@ class JwtLicenseKeyVerifyingReader(
             build()
         }
 
+    /**
+     * @throws JWTVerificationException if verification fails
+     */
     override fun read(encoded: String): OfflineLicenseKey =
         jwtVerifier.verify(encoded)
             .let(::JwtLicenseKey)
