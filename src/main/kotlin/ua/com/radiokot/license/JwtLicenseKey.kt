@@ -7,22 +7,14 @@ import java.security.interfaces.RSAKey
 import java.util.*
 
 class JwtLicenseKey(
-    issuer: String,
-    subject: String,
-    hardware: String,
-    features: Set<Int>,
-    expiresAt: Date?,
-    jwt: String,
-) :
-    OfflineLicenseKey by EncodedOfflineLicenseKey(
-        issuer = issuer,
-        subject = subject,
-        hardware = hardware,
-        features = features,
-        expiresAt = expiresAt,
-        format = FORMAT,
-        encoded = jwt
-    ) {
+    override val issuer: String,
+    override val subject: String,
+    override val hardware: String,
+    override val features: Set<Int>,
+    override val expiresAt: Date?,
+    private val jwt: String,
+) : OfflineLicenseKey{
+    override val format: String = FORMAT
 
     constructor(decodedJWT: DecodedJWT) : this(
         issuer = decodedJWT.issuer,
@@ -41,6 +33,9 @@ class JwtLicenseKey(
             .toSet(),
         jwt = decodedJWT.token,
     )
+
+    override fun encode(): String =
+        jwt
 
     companion object {
         const val FORMAT = "JWT"
