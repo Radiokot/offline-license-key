@@ -8,16 +8,16 @@ plugins {
 apply plugin: 'maven-publish'
 apply plugin: 'org.jetbrains.dokka'
 
-group 'ua.com.radiokot.license'
+group 'ua.com.radiokot'
 version '1.0.0-rc.2'
 
 publishing {
     publications {
         maven(MavenPublication) {
-            artifactId = 'keys'
+            artifactId = 'offline-license-key'
 
             pom {
-                name = 'Offline License Keys'
+                name = 'Offline License Key'
 
                 organization {
                     name = 'Radiokot'
@@ -73,11 +73,11 @@ java {
     targetCompatibility JavaVersion.VERSION_1_8
 }
 
-//javadocJar.dependsOn(dokkaJavadoc)
 dokkaJavadoc {
     outputDirectory = javadoc.destinationDir
     inputs.dir 'src/main/kotlin'
 }
+
 javadocJar {
     dependsOn(dokkaJavadoc)
     classifier = 'javadoc'
