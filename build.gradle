@@ -8,12 +8,13 @@ plugins {
 apply plugin: 'maven-publish'
 apply plugin: 'org.jetbrains.dokka'
 
+group 'ua.com.radiokot.license'
+version '1.0.0-rc.2'
+
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId = 'ua.com.radiokot.license'
             artifactId = 'keys'
-            version = '1.0.0-rc.1'
 
             pom {
                 name = 'Offline License Keys'
