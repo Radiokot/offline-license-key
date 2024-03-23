@@ -2,7 +2,7 @@ package ua.com.radiokot.license
 
 import com.auth0.jwt.algorithms.Algorithm
 import com.auth0.jwt.interfaces.DecodedJWT
-import ua.com.radiokot.license.extension.indicesSequence
+import ua.com.radiokot.license.extension.setBitsSequence
 import java.security.interfaces.RSAKey
 import java.util.*
 
@@ -35,7 +35,7 @@ class JwtLicenseKey(
                 }
             }
             .let(BitSet::valueOf)
-            .indicesSequence()
+            .setBitsSequence()
             .toSet(),
         jwt = decodedJWT.token,
     )

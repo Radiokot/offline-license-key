@@ -2,9 +2,11 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.7.10'
     id 'java'
     id 'maven-publish'
+    id 'org.jetbrains.dokka' version '1.7.10'
 }
 
 apply plugin: 'maven-publish'
+apply plugin: 'org.jetbrains.dokka'
 
 publishing {
     publications {
@@ -68,4 +70,15 @@ java {
 
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
+}
+
+//javadocJar.dependsOn(dokkaJavadoc)
+dokkaJavadoc {
+    outputDirectory = javadoc.destinationDir
+    inputs.dir 'src/main/kotlin'
+}
+javadocJar {
+    dependsOn(dokkaJavadoc)
+    classifier = 'javadoc'
+    from javadoc.destinationDir
 }

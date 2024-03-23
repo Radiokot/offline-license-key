@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test
 import java.util.*
 import kotlin.test.assertEquals
 
-internal class BitSetIteratorsKtTest {
+internal class BitSetIteratorsTest {
     @Test
     fun getIndicesSuccessfully() {
         val vectors = listOf(
@@ -18,7 +18,7 @@ internal class BitSetIteratorsKtTest {
             val bitSet = BitSet().apply {
                 vector.forEach(::set)
             }
-            val indicesSet = bitSet.indices().asSequence().toList()
+            val indicesSet = bitSet.setBits().asSequence().toList()
             assertEquals(vector, indicesSet)
         }
     }
@@ -38,8 +38,8 @@ internal class BitSetIteratorsKtTest {
             }
 
             assertEquals(
-                bitSet.indices().asSequence().toList(),
-                bitSet.indicesSequence().toList()
+                bitSet.setBits().asSequence().toList(),
+                bitSet.setBitsSequence().toList()
             )
         }
     }

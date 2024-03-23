@@ -4,7 +4,10 @@ package ua.com.radiokot.license.extension
 
 import java.util.*
 
-fun BitSet.indices(): Iterator<Int> = object : Iterator<Int> {
+/**
+ * @return an [Iterator] over set bits.
+ */
+fun BitSet.setBits(): Iterator<Int> = object : Iterator<Int> {
     private var lastSetBit = -1
 
     override fun hasNext(): Boolean =
@@ -16,5 +19,8 @@ fun BitSet.indices(): Iterator<Int> = object : Iterator<Int> {
     }
 }
 
-fun BitSet.indicesSequence(): Sequence<Int> =
-    indices().asSequence()
+/**
+ * @return a [Sequence] of set bits.
+ */
+fun BitSet.setBitsSequence(): Sequence<Int> =
+    setBits().asSequence()
