@@ -1,10 +1,44 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.7.10'
-    id 'application'
+    id 'java'
+    id 'maven-publish'
 }
 
-group = 'ua.com.radiokot.license'
-version = '0.0.1'
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'ua.com.radiokot.license'
+            artifactId = 'keys'
+            version = '0.0.1'
+
+            pom {
+                name = 'Offline License Keys'
+
+                organization {
+                    name = 'Radiokot'
+                    url = 'https://radiokot.com.ua'
+                }
+
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://opensource.org/license/mit'
+                        distribution = 'repo'
+                    }
+                }
+            }
+
+            from components.java
+        }
+    }
+}
+
+wrapper {
+    gradleVersion = "7.5"
+    distributionType = Wrapper.DistributionType.BIN
+}
 
 repositories {
     mavenCentral()
@@ -28,6 +62,10 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = '1.8'
 }
 
-application {
-    mainClassName = 'MainKt'
+java {
+    withSourcesJar()
+    withJavadocJar()
+
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
 }
