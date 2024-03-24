@@ -1,6 +1,6 @@
 package ua.com.radiokot.license
 
-import com.auth0.jwt.exceptions.IncorrectClaimException
+import com.auth0.jwt.exceptions.InvalidClaimException
 import com.auth0.jwt.exceptions.SignatureVerificationException
 import com.auth0.jwt.exceptions.TokenExpiredException
 import org.junit.jupiter.api.Test
@@ -158,7 +158,7 @@ internal class JwtLicenseKeyVerifyingReaderTest {
             ) as RSAPublicKey
 
         // TODO introduce special exceptions for verifiers.
-        assertThrows<IncorrectClaimException> {
+        assertThrows<InvalidClaimException> {
             OfflineLicenseKeys.jwt.verifyingReader(
                 issuerPublicKey = issuerPublicKey,
                 issuer = "radiokot.com.ua",
@@ -189,7 +189,7 @@ internal class JwtLicenseKeyVerifyingReaderTest {
                 )
             ) as RSAPublicKey
 
-        assertThrows<IncorrectClaimException> {
+        assertThrows<InvalidClaimException> {
             OfflineLicenseKeys.jwt.verifyingReader(
                 issuerPublicKey = issuerPublicKey,
                 issuer = "some other issuer",

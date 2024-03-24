@@ -100,7 +100,7 @@ internal class JwtLicenseKeyFactoryTest {
         )
         assertEquals(
             """
-                eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyYWRpb2tvdC5jb20udWEiLCJzdWIiOiJvbGVnQHJhZGlva290LmNvbS51YSIsImh3IjoiMTIzMzIxIiwiZiI6WzUyNSwxXSwiZXhwIjoxNzA3MTUxMjAwfQ.E4BKbWpnJAgNTTlNB-LJWpNyjSvFJAZIL5zGZiiGWd6_34OAd1ZEvxbYBWlzTNzp1wdr2lWb0dsaKYAHQ8CzKyBzIRh7quGGbwm86s_09gxpE1w29U6pQOcErd-XxDbLu3gpl3ULeY5tDYJyj2O8sCfzEpR-KGF0_Ntlu-YWgwV1ZwZLu6XD1OTVEgxg4jZhmglN-c3WYqGrWy4tLbfxJaDFRiKym2YiFIPiBm9HLWG8poiawcDe6QPawXXO_rSZbHbwLVWf0dqNrc-x_wBTyWINTFlfEwuVQYCpRbH20RxC0pAp1fjCya00yaj4WIr5BOjxitX6PEjU9DG9b0Tv8A
+                eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvbGVnQHJhZGlva290LmNvbS51YSIsImYiOls1MjUsMV0sImlzcyI6InJhZGlva290LmNvbS51YSIsImV4cCI6MTcwNzE1MTIwMCwiaHciOiIxMjMzMjEifQ.S1JRxn1mvjpVojZC1ZrdtH2mjikn-dI8L7xhqICWJ5lVuPhTtdHpJuN5LxZrqQPIdC0VQGA68krEwD1w6E5I9mrtRA0-kK1qJd2brkS1EqGGM5DJEIqwg_AKSrl3FpsKe2nVI1AHbzOdFSuGwtxRJG388ToC8w_WRg6LEtnxmLJeL_VpjTvs-wDKZeVjK__-nl8tOVYzRMSDW7yd81_Jk2BWQ4wCPJRlcI1YnMDW62CEgmbo9EpZESsw-4V0JPnERnPtCZSkvNsN5rbNIYd0NS9cFAKX1urrw0oARb-OH6fdbwdZnyc1wy3yawlwrXpQP7p0rtHWA1G1gfCW91mIFg
             """.trimIndent(),
             issuedKey.encode()
         )
@@ -191,7 +191,7 @@ internal class JwtLicenseKeyFactoryTest {
         )
         assertEquals(
             """
-                eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyYWRpb2tvdC5jb20udWEiLCJzdWIiOiJvbGVnQHJhZGlva290LmNvbS51YSIsImh3IjoiMTIzMzIxIiwiZiI6WzUyNSwxXX0.Vqd1qwdkLJQ7bf5PI5Yo2ybZZKWYLn2-qSb3AmiyYRLErrjXp8ZK-nT-5F9jSkwTDy99BoxwBdtBVE6tLIU79SS6-9NVaSwECIenIc8TKBdLt8HTV0d1H6MkCt-mqp5GW2alMamgPe6J7D20Ki6DVnM_7tP0DVCEUy0pyj578l3vzh-cRaIX3GSKxEW8FM-S8Yi80UcmLPri6ay_exN9SmwB8WmIhbtTz1UNi-3BoyzLnZjyyd5VLHDTbJoAsDeyQ-_9NTHVVh0aRC8y5ZCrz9xFsODK-a2gJQ1blYE9u-9ZQENB1Txv8yG6o2NrLrpPhWoFPPlUyJRv6I3lRBWRKg
+                eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJvbGVnQHJhZGlva290LmNvbS51YSIsImYiOls1MjUsMV0sImlzcyI6InJhZGlva290LmNvbS51YSIsImh3IjoiMTIzMzIxIn0.Sl6EfOmgQTSNrx0mZLroEpDhWmCSD670b_A_7r1Q1Q9wEC4wL4k4eWk5P0ImWzicaD87k0fx6u78KiVoCJpWDgOdbKB5sbTuvhQRciX5Qis4kpyoRULNO-cy9dQ8x6eRbMK8-eLv6t3j3hnClQofYhTLmxuoT0ZpdedUebHVEai5Uqy8ATh8Fic1MucUk1GxB-eYRW1RiISVxTGZGJbtTmccT6UY98NHSgeDS6Ce_x4ADc90s3mcYwsu3YHVcYWVs32cFbowKvz4jgJSzSt3J432a_mCl35rwvK29ASflYLsfoxKwLgAbdj-Cr650KFXPA17nLeV2_-Oi6ZffnKFJA
             """.trimIndent(),
             issuedKey.encode()
         )
