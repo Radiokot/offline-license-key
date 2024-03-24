@@ -1,6 +1,6 @@
 @file:JvmName("BitSetIterators")
 
-package ua.com.radiokot.license.extension
+package ua.com.radiokot.license
 
 import java.util.*
 

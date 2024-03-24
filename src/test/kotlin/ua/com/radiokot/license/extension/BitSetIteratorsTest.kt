@@ -1,6 +1,8 @@
 package ua.com.radiokot.license.extension
 
 import org.junit.jupiter.api.Test
+import ua.com.radiokot.license.setBits
+import ua.com.radiokot.license.setBitsSequence
 import java.util.*
 import kotlin.test.assertEquals
 
