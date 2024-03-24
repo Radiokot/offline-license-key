@@ -3,6 +3,7 @@ package ua.com.radiokot.license
 import com.auth0.jwt.JWT
 import com.auth0.jwt.exceptions.AlgorithmMismatchException
 import com.auth0.jwt.exceptions.InvalidClaimException
+import com.auth0.jwt.exceptions.JWTDecodeException
 import com.auth0.jwt.exceptions.SignatureVerificationException
 import com.auth0.jwt.exceptions.TokenExpiredException
 import com.auth0.jwt.impl.PublicClaims
@@ -36,6 +37,8 @@ class JwtLicenseKeyVerifyingReader(
         try {
             jwtVerifier.verify(encoded)
                 .let(::JwtLicenseKey)
+        } catch (e: JWTDecodeException) {
+            throw OfflineLicenseKeyVerificationException.InvalidFormat(e.message)
         } catch (e: TokenExpiredException) {
             throw OfflineLicenseKeyVerificationException.Expired(e.message)
         } catch (e: SignatureVerificationException) {

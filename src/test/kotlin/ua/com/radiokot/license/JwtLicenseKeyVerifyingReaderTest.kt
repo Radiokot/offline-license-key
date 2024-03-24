@@ -251,4 +251,33 @@ internal class JwtLicenseKeyVerifyingReaderTest {
             ).read(encodedKey)
         }
     }
+
+    @Test
+    fun failToRead_IfNotAKey() {
+        val notAKey = """
+            eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyYWRpb2tvdC5jb20udW
+        """.trimIndent()
+        val issuerPublicKey: RSAPublicKey = KeyFactory.getInstance("RSA")
+            .generatePublic(
+                X509EncodedKeySpec(
+                    Base64.getMimeDecoder().decode(
+                        """
+                MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAl7JnbMvRi+1YbtmKWXJX
+                B4XRABXfpfbJO3uDMEoIt7dRMIMucsekwSvUq08NrfSTftDRjzmMuGS7JpgSFFO3
+                lB4T1N4wjwmOGiEYUY8myY3XRFyLTyK5IX4c+2DQ3wX/ecED5Dak9JP4ghgo4pIo
+                /Sd5/vsSAYAazsWycaR+S9n93HBXFgDVQq4SMw72VsunoTZA+ip2SBQ2rhtRzbdi
+                p98RmZCnnppgFHZ1VwmMzadkmtBx6UJZ9unVFg48/h0fUhPuHIhOlr/UACQ5LMdF
+                svjJHibc/Y2cE3RYBj/Wy9qmKdnm8H+8s/LcS6ULJGvF5mW0ppmzkq1qc9/Q/4s+
+                5wIDAQAB
+            """.trimIndent()
+                    )
+                )
+            ) as RSAPublicKey
+
+        assertThrows<OfflineLicenseKeyVerificationException.InvalidFormat> {
+            OfflineLicenseKeys.jwt.verifyingReader(
+                issuerPublicKey = issuerPublicKey,
+            ).read(notAKey)
+        }
+    }
 }
