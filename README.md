@@ -4,23 +4,26 @@
 
 Issue and verify standalone license keys unlocking paid features, without a license server.
 
+The library is compatible with Android SDK version **21** and higher.
+It comes with its own `java.util.Base64`.
+
 ## Dependency
 
 Step 1. Ensure you have JitPack repo added to your project `build.gradle` file:
 ```groovy
 dependencyResolutionManagement {
-  repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-  repositories {
-    mavenCentral()
-    maven { url 'https://jitpack.io' }
-  }
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
 }
 ```
 
 Step 2. Add the dependency
 ```groovy
 dependencies {
-        implementation 'ua.com.radiokot:offline-license-key:1.0.0-rc.3'
+    implementation 'ua.com.radiokot:offline-license-key:1.0.0-rc.3'
 }
 ```
 
@@ -28,3 +31,4 @@ dependencies {
 ⚒ Work in progress
 
 Start with `OfflineLicenseKeys.jwt` and follow the Javadoc.
+Usage example can be found in `JwtLicenseKeyFactoryTest` and `JwtLicenseKeyVerifyingReaderTest`

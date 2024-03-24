@@ -48,9 +48,11 @@ repositories {
 }
 
 dependencies {
+    // The last 3.X.X version ensures compatibility with Android running Java 7.
     implementation('com.auth0:java-jwt:3.19.2') {
         exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
     }
+    // Jackson 2.13.0 ensures compatibility with Android SDK version 21 and higher.
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
 
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
