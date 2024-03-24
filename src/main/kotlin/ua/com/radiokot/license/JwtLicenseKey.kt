@@ -3,6 +3,8 @@ package ua.com.radiokot.license
 import com.auth0.jwt.algorithms.Algorithm
 import com.auth0.jwt.interfaces.DecodedJWT
 import java.security.interfaces.RSAKey
+import java.security.interfaces.RSAPrivateKey
+import java.security.interfaces.RSAPublicKey
 import java.util.*
 
 /**
@@ -48,6 +50,6 @@ class JwtLicenseKey(
         const val CLAIM_FEATURES = "f"
 
         fun getAlgorithm(key: RSAKey): Algorithm =
-            Algorithm.RSA256(key)
+            Algorithm.RSA256(key as? RSAPublicKey, key as? RSAPrivateKey)
     }
 }
