@@ -72,13 +72,23 @@ java {
     sourceCompatibility JavaVersion.VERSION_1_8
 }
 
-dokkaJavadoc {
+dokkaHtml {
+    moduleName = 'Offline License Key'
     outputDirectory = javadoc.destinationDir
-    inputs.dir 'src/main/kotlin'
+
+    dokkaSourceSets {
+        configureEach {
+            includes.from('dokka-module.md')
+            perPackageOption {
+                matchingRegex.set('java.util.*')
+                suppress.set(true)
+            }
+        }
+    }
 }
 
-javadocJar {
-    dependsOn(dokkaJavadoc)
-    classifier = 'javadoc'
-    from javadoc.destinationDir
+javadoc {
+    // Make it use Dokka output.
+    dependsOn(dokkaHtml)
+    exclude '*'
 }

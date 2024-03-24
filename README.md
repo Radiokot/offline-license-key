@@ -30,5 +30,7 @@ dependencies {
 ## Usage
 ⚒ Work in progress
 
-Start with `OfflineLicenseKeys.jwt` and follow the Javadoc.
+Start with `OfflineLicenseKeys.jwt` and follow the method docs.
 Usage example can be found in `JwtLicenseKeyFactoryTest` and `JwtLicenseKeyVerifyingReaderTest`
+
+[📖 Explore KDoc](https://javadoc.jitpack.io/ua/com/radiokot/offline-license-key/latest/javadoc/index.html)
