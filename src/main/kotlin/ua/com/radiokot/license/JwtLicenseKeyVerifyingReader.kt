@@ -18,11 +18,13 @@ import java.security.interfaces.RSAPublicKey
 class JwtLicenseKeyVerifyingReader(
     issuerPublicKey: RSAPublicKey,
     private val issuer: String? = null,
+    private val subject: String? = null,
     private val hardware: String? = null,
 ) : OfflineLicenseKeyReader {
     private val jwtVerifier: JWTVerifier =
         JWT.require(JwtLicenseKey.getAlgorithm(issuerPublicKey)).run {
             issuer?.also(::withIssuer)
+            subject?.also(::withSubject)
             hardware?.also { withClaim(JwtLicenseKey.CLAIM_HARDWARE, it) }
             build()
         }
@@ -45,6 +47,9 @@ class JwtLicenseKeyVerifyingReader(
             when {
                 message.contains("'${PublicClaims.ISSUER}'") ->
                     throw OfflineLicenseKeyVerificationException.IssuerMismatch(message)
+
+                message.contains("'${PublicClaims.SUBJECT}'") ->
+                    throw OfflineLicenseKeyVerificationException.SubjectMismatch(message)
 
                 message.contains("'${JwtLicenseKey.CLAIM_HARDWARE}'") ->
                     throw OfflineLicenseKeyVerificationException.HardwareMismatch(message)

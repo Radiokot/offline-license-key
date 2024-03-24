@@ -19,4 +19,7 @@ sealed class OfflineLicenseKeyVerificationException(message: String?) : RuntimeE
 
     class HardwareMismatch(message: String?) :
         OfflineLicenseKeyVerificationException(message)
+
+    class SubjectMismatch(message: String?) :
+        OfflineLicenseKeyVerificationException(message)
 }

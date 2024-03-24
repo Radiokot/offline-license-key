@@ -30,10 +30,12 @@ class JwtLicenseKeySuite {
     fun verifyingReader(
         issuerPublicKey: RSAPublicKey,
         issuer: String? = null,
+        subject: String? = null,
         hardware: String? = null,
     ) = JwtLicenseKeyVerifyingReader(
         issuerPublicKey = issuerPublicKey,
         issuer = issuer,
+        subject = subject,
         hardware = hardware,
     )
 
