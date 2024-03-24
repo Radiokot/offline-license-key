@@ -1,6 +1,7 @@
 package ua.com.radiokot.license
 
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import java.util.*
 import kotlin.test.assertEquals
 
@@ -34,5 +35,16 @@ internal class JwtLicenseKeyDecodingReaderTest {
             Date(1707151200000),
             readKey.expiresAt
         )
+    }
+
+    @Test
+    fun failToRead_IfNotAKey() {
+        val notAKey = """
+            eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyYWRpb2tvdC5jb20udW
+        """.trimIndent()
+
+        assertThrows<OfflineLicenseKeyVerificationException.InvalidFormat> {
+            OfflineLicenseKeys.jwt.decodingReader().read(notAKey)
+        }
     }
 }
