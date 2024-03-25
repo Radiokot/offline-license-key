@@ -72,7 +72,7 @@ java {
     sourceCompatibility JavaVersion.VERSION_1_8
 }
 
-dokkaHtml {
+dokkaJavadoc {
     moduleName = 'Offline License Key'
     outputDirectory = javadoc.destinationDir
 
@@ -89,6 +89,6 @@ dokkaHtml {
 
 javadoc {
     // Make it use Dokka output.
-    dependsOn(dokkaHtml)
+    dependsOn(dokkaJavadoc)
     exclude '*'
 }
