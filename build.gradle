@@ -18,16 +18,18 @@ publishing {
 
             pom {
                 name = 'Offline License Key'
+                description = 'Issue and verify standalone license keys unlocking paid features, without a license server'
 
                 organization {
-                    name = 'Radiokot'
+                    name = 'Oleg Koretsky'
                     url = 'https://radiokot.com.ua'
                 }
 
                 licenses {
                     license {
-                        name = 'MIT License'
-                        url = 'https://opensource.org/license/mit'
+                        name = 'GPL-3.0 license'
+                        url = 'https://www.gnu.org/licenses/gpl-3.0-standalone.html'
+                        comments = 'GNU General Public License, Version 3'
                         distribution = 'repo'
                     }
                 }
