@@ -23,7 +23,7 @@ dependencyResolutionManagement {
 Step 2. Add the dependency
 ```groovy
 dependencies {
-    implementation 'ua.com.radiokot:offline-license-key:1.0.0-rc.5'
+    implementation 'ua.com.radiokot:offline-license-key:1.0.0'
 }
 ```
 

@@ -9,7 +9,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'org.jetbrains.dokka'
 
 group 'ua.com.radiokot'
-version '1.0.0-rc.6'
+version '1.0.0'
 
 publishing {
     publications {
