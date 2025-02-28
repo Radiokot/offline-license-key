@@ -33,6 +33,10 @@ Usage example can be found in `JwtLicenseKeyFactoryTest` and `JwtLicenseKeyVerif
 
 [📖 Explore KDoc](https://javadoc.jitpack.io/ua/com/radiokot/offline-license-key/latest/javadoc/index.html)
 
+|<!-- -->| Apps using Offline License Key |
+|--------|:-------------------------------|
+| <img src="https://raw.githubusercontent.com/Radiokot/photoprism-android-client/refs/heads/main/app/src/main/res/mipmap-hdpi/ic_launcher.png" alt="Icon" style="height: 28px;"/> |[Gallery for PhotoPrism](https://github.com/Radiokot/photoprism-android-client/tree/e6601acdb4db9c821abc4d7b793e264fb84dd070/app/src/main/java/ua/com/radiokot/photoprism/features/ext/key) uses the library to activate extensions|
+
 ## License
 I reject the concept of intellectual property. Claiming ownership over information that can be replicated perfectly and endlessly is inherently flawed. Consequently, any efforts to uphold such form of ownership inevitably result in some people gaining unjustifiable control over other's tangible resources, such as computers, printing equipment, construction materials, etc.
 When talking specifically about source code licensing – without a state violently enforcing [copyright monopolies](https://torrentfreak.com/language-matters-framing-the-copyright-monopoly-so-we-can-keep-our-liberties-130714/), it would be ludicrous to assume that a mere text file in a directory enables someone to restrict processing copies of this information by others on their very own computers.
